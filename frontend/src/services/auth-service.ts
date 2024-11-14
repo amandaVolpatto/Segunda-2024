@@ -11,6 +11,17 @@ const signIn = async (credential: ICredential) => {
 
   return data;
 }
+
+const signUp = async (user: IUser ) => {
+
+  await supabase.auth.admin.createUser({
+    user_metadata: {name: user.name},
+    email: user.email,
+    password: user.password,
+    email_confirm: true
+  });
+}
 export const AuthService = {
-    signIn
+    signIn,
+    signUp
 }
